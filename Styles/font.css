@@ -1,0 +1,11 @@
+﻿
+@import url(https://fonts.googleapis.com/earlyaccess/notonaskharabic.css);
+body {
+    font-family: 'Noto Naskh Arabic', serif !important;
+}
+
+.heading
+{
+    background-color: yellow;
+    color: red;
+}

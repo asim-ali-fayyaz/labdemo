@@ -1,0 +1,97 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="WebApplication.Presentation.Main" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+   
+    <link href="Styles/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/font.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="bg-light">
+
+
+    <form id="form1" runat="server">
+        <div class="sticky-top">
+            <nav class="navbar navbar-expand-md navbar-dark  bg-dark main-menu">
+  <a href="#" class="navbar-brand mx-auto order-md-last"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse" id="mainNav">
+     <ul class="navbar-nav  ml-auto">
+   
+            <li class="nav-item active">
+              <a class="nav-link urdu " href="Default.aspx"><h3>آج کا اخبار</h3> <span class="sr-only">(current)</span></a>
+            </li>
+    </ul>
+  </div>
+</nav>
+        </div>
+        <div class="container-fluid bg-white shadow-sm">
+            <div class="row pt-3 pb-1 mb-3">
+                <asp:Repeater ID="RepeaterLatesNews" runat="server">
+                    <ItemTemplate>
+                        <div class="col-lg-3 col-6 pb-3">
+                            <a href="newsdetails.aspx?page=<%#Eval("lid") %>" style="text-decoration: none" target="_blank">
+                                <div class="row">
+                                    <div class="col-lg-8 text-right">
+                                        <p class="h5 text-dark"><%#Eval("newstitle")%></p>
+                                    </div>
+                                    <div class="col-lg-4 pl-0 border-right text-center">
+                                        <img src='<%# Eval("thumnail")%>' class="img-fluid" alt="" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+
+
+            </div>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolderMainPage" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+    <div class="bg-silver mt-4">
+        <p class="small text-center">
+            Copyright © 2020 Khaleej News. All rights reserved.
+        </p>
+    </div>
+    <script src="Styles/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="Styles/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="Styles/coordinatesselection.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var months = ['جنوری', 'فروری', 'مارچ', 'اپریل', 'مئی', 'جون', 'جولائی', 'اگست', 'ستمبر', 'اکتوبر', 'نومبر', 'دسمبر'];
+        var weekDays = ['اتوار', 'پیر', 'منگل', 'بدھ', 'جمعرات', 'جمعه', 'ہفتہ'];
+        var now = new Date();
+        var thisMonth = months[now.getMonth()]; // getMonth method returns the month of the date (0-January :: 11-December)
+        var thisWeekDay = weekDays[now.getDay()];
+        var output = document.getElementById('currentdate');
+        if (output.textContent !== undefined) {
+            output.innerHTML = thisWeekDay + "  " + new Date().getDate() + " " + thisMonth + " " + new Date().getFullYear() + 'ء';
+        }
+        else {
+            output.innerText = thisMonth;
+        }
+
+    </script>
+</body>
+</html>
